@@ -4,6 +4,25 @@
 
 
 // var F2F = new f2f();
+var
+persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
+fixNumbers = function (str)
+{
+  if(typeof str === 'string')
+  {
+    for(var i=0; i<10; i++)
+    {
+      str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+    }
+  }
+  return str;
+};
+
+var mystr = 'Sample text ۱۱۱۵۱ and ٢٨٢٢';
+// console.log(mystr)
+// mystr = fixNumbers(mystr);
+// console.log(mystr)
 
 
 var qrcode
@@ -36,10 +55,8 @@ var email_title = 'Shahed-Grant-1401-no.name'
 d3.select('#AA').node().value = A
 d3.select('#BB').node().value = B
 
-d3.select("#name1").on("change", function () { update() })
-d3.select("#name2").on("change", function () { update() })
-d3.select("#faculty").on("change", function () { update() })
-d3.select("#group").on("change", function () { update() })
+
+
 
 function update() {
 
@@ -136,7 +153,7 @@ function update() {
 
   // d3.select('#full_name').html('<b>' + d3.select('#name1').property("value") + " " + d3.select('#name2').property("value") + '</b>')
   // d3.select('#full_aff').text("دانشکده " + d3.select('#faculty').property("value") + " - گروه " + d3.select('#group').property("value"))
-  d3.select('#research_score_result').text(d3.select('#research_score').property("value"))
+  d3.select('#research_score_result').text(research_score)
 
   console.log('message - update')
 }
@@ -147,8 +164,6 @@ d3.select("#state").on("change", function () {
   console.log('message1')
   A = 4
   B = 0.5
-  research_score = 0
-  percent = 0
 
   total_grant_state1 = 0
   total_grant_state2 = 0
@@ -162,41 +177,35 @@ d3.select("#state").on("change", function () {
   non_personnel_grant_state2 = 0
   non_personnel_grant_state3 = 0
 
-  d3.select('#research_score').node().value = research_score
+  
+
   d3.select('#percent').node().value = percent
 
   update()
 });
 
+
+d3.select("#name1").on("change", function () { update() })
+
+d3.select("#name2").on("change", function () { update() })
+
 d3.select("#percent").on("change", function () {
-  console.log('message2')
-  update()
-});
+  d3.select('#percent').node().value = fixNumbers(d3.select('#percent').property("value"))
+  update()});
 
 d3.select("#research_score").on("change", function () {
-  console.log('message2')
-  update()
-});
+  d3.select('#research_score').node().value = fixNumbers(d3.select('#research_score').property("value"))
+  update()});
 
-d3.select("#email").on("change", function () {
-  console.log('message2')
-  update()
-});
+d3.select("#email").on("change", function () {update()});
 
 d3.select("#meli").on("change", function () {
-  console.log('message2')
-  update()
-});
+  d3.select('#meli').node().value = fixNumbers(d3.select('#meli').property("value"))
+  update()});
 
-d3.select("#faculty").on("change", function () {
-  console.log('message2')
-  update()
-});
+d3.select("#faculty").on("change", function () {update()});
 
-d3.select("#group").on("change", function () {
-  console.log('message2')
-  update()
-});
+d3.select("#group").on("change", function () {update()});
 
 var state_value = 0
 var word1
@@ -214,7 +223,7 @@ d3.select("#letter").on("click", function () {
   word2 = d3.select('#name2').property("value")
   word3 = d3.select('#faculty').property("value")
   word4 = d3.select('#group').property("value")
-  word5 = d3.select('#research_score').property("value")
+  word5 = research_score
   word6 = d3.select('#meli').property("value")
   word7 = d3.select('#email').property("value")
   console.log('state_value')
@@ -230,7 +239,6 @@ function print_letter() {
 
   if (state_value == 1) {
     d3.select('#state_result').text('پژوهانه پایه')
-    d3.select('#percent_title').text("بدون تبدیل:")
     d3.select('#total_grant').text(total_grant_state1.toFixed(3))
     d3.select('#percent_result_value').text('---')
     d3.select('#personnel_grant').text(personnel_grant_state1.toFixed(3))
@@ -240,7 +248,6 @@ function print_letter() {
 
   if (state_value == 2) {
     d3.select('#state_result').text('اعتبار اسنادی افزایش یافته')
-    d3.select('#percent_title').text("درصد تبدیل حق التحقیق به اسنادی (0% تا 75%):")
     d3.select('#percent').property("disabled", false)
     d3.select('#total_grant').text(total_grant_state2.toFixed(3))
     d3.select('#percent_result_value').text(percent)
@@ -251,7 +258,6 @@ function print_letter() {
 
   if (state_value == 3) {
     d3.select('#state_result').text('حق التحقیق افزایش یافته')
-    d3.select('#percent_title').text("درصد تبدیل اسنادی به حق التحقیق (0% تا 75%):")
     d3.select('#percent').property("disabled", false)
     d3.select('#total_grant').text(total_grant_state3.toFixed(3))
     d3.select('#percent_result_value').text(percent)

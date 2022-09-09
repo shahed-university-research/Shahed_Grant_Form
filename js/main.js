@@ -1,15 +1,13 @@
 
-// set the dimensions and margins of the graph
-// JsBarcode("#barcode", "0012222223,basic,0,25,3.45,8.9,15.1", {
-//   // format: "pharmacode",
-//   lineColor: "#000",
-//   width: 1,
-//   height: 50,
-//   displayValue: false
-// });
+//set the dimensions and margins of the graph
 
 
 
+// var F2F = new f2f();
+
+
+var qrcode
+var qrcode_text
 
 var A = 4
 var B = 0.5
@@ -51,7 +49,7 @@ function update() {
   if (percent < 0) { percent = 0 }
   d3.select('#percent').node().value = percent
   print_file_name = d3.select('#meli').property("value")
-  email_title = 'Shahed-Grant-1401-'+d3.select('#meli').property("value")
+  email_title = 'پژوهانه دانشگاه شاهد - 1401 - ' + d3.select('#name1').property("value") + ' ' + d3.select('#name2').property("value")
 
 
   // for state 1
@@ -86,8 +84,10 @@ function update() {
     d3.select('#email_output').text(d3.select('#email').property("value"))
     d3.select('#faculty_output').text(d3.select('#faculty').property("value"))
     d3.select('#group_output').text(d3.select('#group').property("value"))
-    code1 = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)
-    code2 = d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
+    // code1 = '#NUM#,' +F2F.simplef2f(d3.select('#name1').property("value")) + ',' + F2F.simplef2f(d3.select('#name2').property("value")) + ',' + F2F.simplef2f(d3.select('#faculty').property("value")) + ',' + F2F.simplef2f(d3.select('#group').property("value"))+ ',' +d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)+ ',#NUM#'
+    code1 = '#NUM#,' + d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',#NUM#'
+    code2 = '#NAM#,' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value") + ',#NAM#'
+    qrcode_text = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
   }
 
   if (d3.select("#state").property("value") == 2) {
@@ -105,8 +105,10 @@ function update() {
     d3.select('#email_output').text(d3.select('#email').property("value"))
     d3.select('#faculty_output').text(d3.select('#faculty').property("value"))
     d3.select('#group_output').text(d3.select('#group').property("value"))
-    code1 = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)
-    code2 = d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
+    // code1 = '#NUM#,' +F2F.simplef2f(d3.select('#name1').property("value")) + ',' + F2F.simplef2f(d3.select('#name2').property("value")) + ',' + F2F.simplef2f(d3.select('#faculty').property("value")) + ',' + F2F.simplef2f(d3.select('#group').property("value"))+ ',' +d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)+ ',#NUM#'
+    code1 = '#NUM#,' + d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',#NUM#'
+    code2 = '#NAM#,' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value") + ',#NAM#'
+    qrcode_text = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
 
   }
 
@@ -125,8 +127,10 @@ function update() {
     d3.select('#email_output').text(d3.select('#email').property("value"))
     d3.select('#faculty_output').text(d3.select('#faculty').property("value"))
     d3.select('#group_output').text(d3.select('#group').property("value"))
-    code1 = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)
-    code2 = d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
+    // code1 = '#NUM#,' +F2F.simplef2f(d3.select('#name1').property("value")) + ',' + F2F.simplef2f(d3.select('#name2').property("value")) + ',' + F2F.simplef2f(d3.select('#faculty').property("value")) + ',' + F2F.simplef2f(d3.select('#group').property("value"))+ ',' +d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3)+ ',#NUM#'
+    code1 = '#NUM#,' + d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',#NUM#'
+    code2 = '#NAM#,' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value") + ',#NAM#'
+    qrcode_text = d3.select('#meli').property("value") + ',' + d3.select('#email').property("value") + ',' + d3.select("#state").property("value") + ',' + percent + ',' + research_score + ',' + personnel_grant_state3.toFixed(3) + ',' + non_personnel_grant_state3.toFixed(3) + ',' + total_grant_state3.toFixed(3) + ',' + d3.select('#name1').property("value") + ',' + d3.select('#name2').property("value") + ',' + d3.select('#faculty').property("value") + ',' + d3.select('#group').property("value")
 
   }
 
@@ -216,9 +220,10 @@ d3.select("#letter").on("click", function () {
   console.log('state_value')
   console.log(state_value)
   d3.select('#calculator').html(
-    '<div class="row">   <div class="col"></div>   <div class="col col-lg-8">     <div class="alert alert-warning" role="alert">       <P> ترجیحا بعد از زدن دکمه "چاپ" بخش Destination را روی حالت Save to PDF قرار دهید. </P>       <P>لطفا از آدرس و عنوان زیر جهت ارسال ایمیل استفاده نمایید.</P>       <p> آدرس ایمیل: </p>       <P><strong>research2@shahed.ac.ir</strong></P>       <p>عنوان ایمیل:</p>       <p> <strong><span id="email_title">1</span></strong> </p>     </div>   </div>   <div class="col"></div> </div> <div class="row">   <div class="col"></div>   <div class="col">     <form class="card p-2">       <div class="input-group"> <button id="print_btn" class="w-100 btn btn-success btn-lg" type="button"           onclick="printDiv(print_file_name)">چاپ</button> </div>     </form>   </div>   <div class="col"></div>   <div class="col">     <form class="card p-2">       <div class="input-group"> <button id="return_btn" class="w-100 btn btn-primary btn-lg" type="button"           onclick="first_page()">بازگشت</button> </div>     </form>   </div>   <div class="col"></div> </div> <div class="row">   <div class="col col-xs"></div>   <div id="printableArea" class="row">     <div class="col col-xs"></div>     <div class="col col-lg-8 card">       <table>         <tbody>           <tr>             <td rowspan="8"><img style="width:100px;" src="img/form1.png" /></td>             <td height="50" align="center"><img style="width:100px;" src="img/Untitled.png" /></td>           </tr>           <tr>             <td height="50"> </td>           </tr>           <tr>             <td height="50">               <p style="font-weight: bold;"> معاون محترم پژوهش و فناوری دانشگاه شاهد </p>             </td>           </tr>           <tr>             <td height="50">               <p style="font-weight: bold;"> موضوع: تعیین حالت پژوهانه دریافتی </p>             </td>           </tr>           <tr>             <td height="50">               <p>احتراماً، پیرو "دستورالعمل اجرایی تخصيص پژوهانه عملکردی اعضای هيأت علمي دانشگاه شاهد" پژوهانه مورد                 درخواست اینجانب به شرح ذیل می باشد. </p>             </td>           </tr>           <tr>             <td height="1">               <div class="row">                 <div class="col">                   <table class="table table-striped table-bordered">                     <tbody>                       <tr>                         <th scope="row"> <strong>حالت انتخابی</strong> </th>                         <td><strong><span id="state_result">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>درصد تبدیل (%)</strong> </th>                         <td><strong><span id="percent_result_value"></span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>امتیاز پژوهشی</strong> </th>                         <td><strong><span id="research_score_result">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>میزان حق التحقیق (میلیون تومان)</strong> </th>                         <td><strong><span id="personnel_grant">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>میزان اسنادی (میلیون تومان)</strong> </th>                         <td><strong><span id="non_personnel_grant">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>مبلغ کل پژوهانه (میلیون تومان)</strong> </th>                         <td><strong><span id="total_grant">1</span></strong></td>                       </tr>                     </tbody>                   </table>                 </div>               </div>             </td>           </tr>           <tr>             <td height="50"> <strong>                 <p style="float:left;margin-left:80px;clear:both;"><span id="full_name">1</span></p>               </strong> <strong>                 <p style="float:left;margin-left:10px;clear:both"><span id="full_aff">1</span></p>               </strong> <strong>                 <p style="float:left;margin-left:30px;clear:both"><span id="full_meli">1</span></p>               </strong> <strong>                 <p style="float:left;margin-left:30px;clear:both"><span id="full_email">1</span></p>               </strong> <br> <small>                 <p style="float:left;margin-left:30px;clear:both">#NUM#<span id="code1">1</span>#NUM#</p>               </small> <br> <small>                 <p style="float:left;margin-left:30px;clear:both">#NAM#<span id="code2">1</span>#NAM#</p>               </small> </td>           </tr>           <tr>             <td height="50"><svg id="barcode"></svg></td>           </tr>         </tbody>       </table>     </div>     <div class="col col-xs"></div>   </div>   <div class="col col-xs"></div> </div>'
+    '<div class="row">   <div class="col"></div>   <div class="col col-lg-8">     <div class="alert alert-warning" role="alert">       <P> ترجیحا بعد از زدن دکمه "چاپ" بخش Destination را روی حالت Save to PDF قرار دهید. </P>       <P>لطفا از آدرس و عنوان زیر جهت ارسال ایمیل استفاده نمایید.</P>       <p> آدرس ایمیل: </p>       <P><strong>research2@shahed.ac.ir</strong></P>       <p>عنوان ایمیل:</p>       <p> <strong><span id="email_title">1</span></strong> </p>     </div>   </div>   <div class="col"></div> </div> <div class="row">   <div class="col"></div>   <div class="col">     <form class="card p-2">       <div class="input-group"> <button id="print_btn" class="w-100 btn btn-success btn-lg" type="button"           onclick="printDiv(print_file_name)">چاپ</button> </div>     </form>   </div>   <div class="col"></div>   <div class="col">     <form class="card p-2">       <div class="input-group"> <button id="return_btn" class="w-100 btn btn-primary btn-lg" type="button"           onclick="first_page()">بازگشت</button> </div>     </form>   </div>   <div class="col"></div> </div> <div class="row">   <div class="col col-xs"></div>   <div id="printableArea" class="row">     <div class="col col-xs"></div>     <div class="col col-lg-8 card">       <table>         <tbody>           <tr>             <td rowspan="8"><img style="width:100px;" src="img/form1.png" /></td>             <td height="50" align="center"><img style="width:100px;" src="img/Untitled.png" /></td>           </tr>           <tr>             <td height="1"> </td>           </tr>           <tr>             <td height="1">               <p style="font-weight: bold;"> معاون محترم پژوهش و فناوری دانشگاه شاهد </p>             </td>           </tr>           <tr>             <td height="1">               <p style="font-weight: bold;"> موضوع: تعیین حالت پژوهانه دریافتی </p>             </td>           </tr>           <tr>             <td height="1">               <p>احتراماً، پیرو "دستورالعمل اجرایی تخصيص پژوهانه عملکردی اعضای هيأت علمي دانشگاه شاهد" پژوهانه مورد                 درخواست اینجانب به شرح ذیل می باشد. </p>             </td>           </tr>           <tr>             <td height="1">               <div class="row">                 <div class="col">                   <table class="table table-striped table-bordered">                     <tbody>                       <tr>                         <th scope="row"> <strong>حالت انتخابی</strong> </th>                         <td><strong><span id="state_result">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>درصد تبدیل (%)</strong> </th>                         <td><strong><span id="percent_result_value"></span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>امتیاز پژوهشی</strong> </th>                         <td><strong><span id="research_score_result">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>میزان حق التحقیق (میلیون تومان)</strong> </th>                         <td><strong><span id="personnel_grant">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>میزان اسنادی (میلیون تومان)</strong> </th>                         <td><strong><span id="non_personnel_grant">1</span></strong></td>                       </tr>                       <tr>                         <th scope="row"> <strong>مبلغ کل پژوهانه (میلیون تومان)</strong> </th>                         <td><strong><span id="total_grant">1</span></strong></td>                       </tr>                     </tbody>                   </table>                 </div>               </div>             </td>           </tr>           <tr>             <td height="100">               <div class="row">                  <div id="qrcode" class="col card border-light mx-auto position-absolute end-0"                   style="width: 230px;height: 210px;"></div>                  <div class="col">                   <strong>                     <p><span id="full_name">1</span></p>                   </strong>                   <strong>                     <p><span id="aff1">1</span></p>                   </strong>                   <strong>                     <p><span id="aff2">1</span></p>                   </strong>                   <strong>                     <p><span id="full_meli">1</span></p>                   </strong>                   <strong>                     <p><span id="full_email">1</span></p>                   </strong>                 </div>                </div>              </td>           </tr>           <tr>             <td height="200"><br><br><span>.</span></td>           </tr>         </tbody>       </table>     </div>     <div class="col col-xs"></div>   </div>   <div class="col col-xs"></div> </div>'
   )
   print_letter()
+
 });
 
 function print_letter() {
@@ -257,14 +262,28 @@ function print_letter() {
   }
 
   d3.select('#full_name').html('<b>' + word1 + " " + word2 + '</b>')
-  d3.select('#full_aff').text("دانشکده " + word3 + " - گروه " + word4)
-  d3.select('#full_meli').text(word6)
-  d3.select('#full_email').text(word7)
+  d3.select('#aff1').text("دانشکده: " + word3)
+  d3.select('#aff2').text("گروه: " + word4)
+  d3.select('#full_meli').text("کد ملی: " + word6)
+  d3.select('#full_email').text("ایمیل: " + word7)
   d3.select('#code1').text(code1)
   d3.select('#code2').text(code2)
   d3.select('#email_title').text(email_title)
-  
-  console.log('message printttt')
+
+  console.log(qrcode_text)
+
+  qrcode = new QRCode(document.getElementById("qrcode"), {
+    width: 1024,
+    height: 1024,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  qrcode.makeCode(qrcode_text);
+
+
+
 }
 
 function first_page() {

@@ -14,16 +14,30 @@ fixNumbers = function (str)
     for(var i=0; i<10; i++)
     {
       str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+      
     }
   }
   return str;
 };
 
-var mystr = 'Sample text ۱۱۱۵۱ and ٢٨٢٢';
+// var mystr = 'Sample text ۱۱۱۵۱ and ٢٨٢٢';
 // console.log(mystr)
 // mystr = fixNumbers(mystr);
 // console.log(mystr)
 
+removeEndSpace = function (str)
+{
+  if(typeof str === 'string')
+  {
+    str = str.trim()
+    str = str.replace(/  +/g, ' ');
+  }
+  return str;
+};
+// var mystr = '             محمد علی             ';
+// console.log(mystr)
+// mystr = removeEndSpace(mystr);
+// console.log(mystr)
 
 var qrcode
 var qrcode_text
@@ -185,27 +199,43 @@ d3.select("#state").on("change", function () {
 });
 
 
-d3.select("#name1").on("change", function () { update() })
+d3.select("#name1").on("change", function () { 
+  d3.select('#name1').node().value = removeEndSpace(d3.select('#name1').property("value"))
+  update() })
 
-d3.select("#name2").on("change", function () { update() })
+d3.select("#name2").on("change", function () { 
+  d3.select('#name2').node().value = removeEndSpace(d3.select('#name2').property("value"))
+  update() })
 
 d3.select("#percent").on("change", function () {
   d3.select('#percent').node().value = fixNumbers(d3.select('#percent').property("value"))
+  d3.select('#percent').node().value = removeEndSpace(d3.select('#percent').property("value"))
+
   update()});
 
 d3.select("#research_score").on("change", function () {
   d3.select('#research_score').node().value = fixNumbers(d3.select('#research_score').property("value"))
+  d3.select('#research_score').node().value = removeEndSpace(d3.select('#research_score').property("value"))
+  
   update()});
 
-d3.select("#email").on("change", function () {update()});
+d3.select("#email").on("change", function () {
+  d3.select('#email').node().value = removeEndSpace(d3.select('#email').property("value"))
+  update()});
 
 d3.select("#meli").on("change", function () {
   d3.select('#meli').node().value = fixNumbers(d3.select('#meli').property("value"))
+  d3.select('#meli').node().value = removeEndSpace(d3.select('#meli').property("value"))
+
   update()});
 
-d3.select("#faculty").on("change", function () {update()});
+d3.select("#faculty").on("change", function () {
+  d3.select('#faculty').node().value = removeEndSpace(d3.select('#faculty').property("value"))
+  update()});
 
-d3.select("#group").on("change", function () {update()});
+d3.select("#group").on("change", function () {
+  d3.select('#group').node().value = removeEndSpace(d3.select('#group').property("value"))
+  update()});
 
 var state_value = 0
 var word1

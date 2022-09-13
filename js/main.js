@@ -313,7 +313,7 @@ function print_letter() {
     height: 256,
     colorDark: "#000000",
     colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.L
+    correctLevel: QRCode.CorrectLevel.H
   });
 
   qrcode.makeCode(qrcode_text);

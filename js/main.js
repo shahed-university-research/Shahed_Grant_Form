@@ -82,6 +82,17 @@ function update() {
   print_file_name = d3.select('#meli').property("value")
   email_title = 'پژوهانه دانشگاه شاهد - 1401 - ' + d3.select('#name1').property("value") + ' ' + d3.select('#name2').property("value")
 
+  total_grant_state1 = 0
+  personnel_grant_state1 = 0
+  non_personnel_grant_state1 = 0
+
+  total_grant_state2 = 0
+  personnel_grant_state2 = 0
+  non_personnel_grant_state2 = 0
+
+  total_grant_state3 = 0
+  personnel_grant_state3 = 0
+  non_personnel_grant_state3 = 0
 
   // for state 1
   total_grant_state1 = A + research_score * B

@@ -97,6 +97,8 @@ function update() {
   // for state 1
   total_grant_state1 = A + research_score * B
   if (total_grant_state1 > 5) { personnel_grant_state1 = 5 + 40 * (total_grant_state1 - 5) / 100 }
+  if (total_grant_state1 == 5) { personnel_grant_state1 = 5 + 40 * (total_grant_state1 - 5) / 100 }
+  if (total_grant_state1 < 5) { personnel_grant_state1 = total_grant_state1 }
   non_personnel_grant_state1 = total_grant_state1 - personnel_grant_state1
 
   // for state 2
